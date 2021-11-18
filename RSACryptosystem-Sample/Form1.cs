@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.ComponentModel;
+//using System.Data;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Security;
+//using System.Security;
 using System.Xml;
-using System.Security.Cryptography;
-using Microsoft.VisualBasic;
+using System.Security.Cryptography; 
+//using Microsoft.VisualBasic;
 using System.Diagnostics;
-
+using System.Xml.Serialization;
+using System.Text;
 
 namespace RSA1710900
 {
@@ -21,6 +22,8 @@ namespace RSA1710900
         private RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
         private string pathKeysXML = "";
         private bool isEncryptFile = true;
+
+
         public RSACryptosystem()
         {
             InitializeComponent();
@@ -48,8 +51,8 @@ namespace RSA1710900
             lbl_sha256.Enabled = false;
             this.comboBoxLengKey.Text = "1024 bits";
             Control.CheckForIllegalCrossThreadCalls = false;
-
         }
+
         private void enabledOrDisableButtons(bool isEnable)
         {
             this.btnReset.Enabled = isEnable;
@@ -62,9 +65,9 @@ namespace RSA1710900
             this.btnOpenFileKeys.Enabled = isEnable;
             this.btnOpenFolderIn.Enabled = isEnable;
             this.selectOutput.Enabled = isEnable;
-
-
         }
+
+
         private void btnGenerateKey_Click(object sender, EventArgs e)
         {
             
@@ -73,19 +76,26 @@ namespace RSA1710900
             saveFileDialog1.DefaultExt = "xml";
             saveFileDialog1.Filter = "Xml File|*.xml|All File|*.*";
             saveFileDialog1.Title = "Chọn tên file";
+            //saveFileDialog1.InitialDirectory = "";
+
             if (saveFileDialog1.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
+            
             int lengthKey = 0;
+
             if (this.comboBoxLengKey.Text == "1024 bits") lengthKey = 1024;
             else if (this.comboBoxLengKey.Text == "512 bits") lengthKey = 512;
             else if (this.comboBoxLengKey.Text == "2048 bits") lengthKey = 2048;
             else if (this.comboBoxLengKey.Text == "4096 bits") lengthKey = 4096;
-            saveFileDialog1.RestoreDirectory = true;
+
+            //saveFileDialog1.RestoreDirectory = false;
             String pathPrivateKey = saveFileDialog1.FileName;
+           
+
             //tạo key có độ dài lengthKey
-            RSA = new RSACryptoServiceProvider(lengthKey); //tạo key có độ dài lengtheKey
+            RSA = new RSACryptoServiceProvider(lengthKey); //tạo public key va private key có độ dài lengtheKey
 
                              
             File.WriteAllText(pathPrivateKey, RSA.ToXmlString(true));  // Private Key
@@ -98,18 +108,42 @@ namespace RSA1710900
                 if (Path.GetExtension(pathKeysXML) == ".xml") //kiểm tra định dạng
                 {
                     XmlDocument xml = new XmlDocument();
-                    xml.LoadXml(File.ReadAllText(pathKeysXML)); //đọc RSA Key
+                        xml.LoadXml(File.ReadAllText(pathKeysXML)); //đọc RSA Key (public && private)
+
                     try
                     {
-                        XmlNode xnList = xml.SelectSingleNode("/RSAKeyValue/Modulus"); 
-                        tbN.Text = xnList.InnerText;
-                        xnList = xml.SelectSingleNode("/RSAKeyValue/Exponent");
+                        XmlNode xnList = xml.SelectSingleNode("/RSAKeyValue/Modulus"); //n
+                        tbN.Text = xnList.InnerText;    
+                        xnList = xml.SelectSingleNode("/RSAKeyValue/Exponent"); // e
                         tbE.Text = xnList.InnerText;
                         xnList = xml.SelectSingleNode("/RSAKeyValue/D");
                         tbD.Text = xnList.InnerText;
                         tbN.Enabled = true;
                         tbE.Enabled = true;
                         tbD.Enabled = true;
+
+
+                       
+                        
+                        RSAParameters _publicKey = RSA.ExportParameters(false);
+                        var sw = new StringWriter();
+                        var xs = new XmlSerializer(typeof(RSAParameters));
+                        xs.Serialize(sw, _publicKey);
+                        string XmlFileOfPublicKey = sw.ToString(); // xuat ra file xml vao tbPublicKey 
+
+
+                        string pathPublicKey = "D:\\Downloads\\pathPublicKey.xml";
+                        File.WriteAllText(pathPublicKey, XmlFileOfPublicKey);
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.LoadXml(File.ReadAllText(pathPublicKey)); //doc public key
+                        XmlNode xmlNode_1 = xmlDoc.SelectSingleNode("/RSAParameters/Exponent"); //e 
+                        XmlNode xmlNode_2 = xmlDoc.SelectSingleNode("/RSAParameters/Modulus"); // n 
+                        //string publicKey = xmlNode_2.InnerText;                        
+
+                        //byte[] bytes = Encoding.Default.GetBytes(publicKey);
+                        //string hexStringPublicKey = BitConverter.ToString(bytes);
+                        //hexStringPublicKey = hexStringPublicKey.Replace("-", " ");
+                        tbPublicKey.Text = xmlNode_2.InnerText;
                     }
                     catch (Exception ix)
                     {
@@ -150,6 +184,8 @@ namespace RSA1710900
                         tbN.Enabled = true;
                         tbE.Enabled = true;
                         tbD.Enabled = true;
+
+                      
                     }
                     catch (Exception ex)
                     {
@@ -189,6 +225,7 @@ namespace RSA1710900
                 MessageBox.Show("Vui lòng chọn đường dẫn !");
             }
         }
+
         private void RSA_Algorithm(string inputFile, string outputFile, RSAParameters RSAKeyInfo, bool isEncrypt)
         {
             try
@@ -282,7 +319,7 @@ namespace RSA1710900
                             enabledOrDisableButtons(true);
                             return;
                         }
-
+                        
                         
                         
                        // tbt.Text = Path.GetDirectoryName(outputFileName);
@@ -449,6 +486,7 @@ namespace RSA1710900
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 this.tbInput.Text = folderBrowserDialog1.SelectedPath;
         }
+
         public static string MD5(string path)
         {
             using (var md5 = System.Security.Cryptography.MD5.Create())
@@ -526,8 +564,9 @@ namespace RSA1710900
             {
                 this.tbOutput.Text = f1.SelectedPath;
             }    
-                
         }
+
+  
     }
     
 }
