@@ -2,7 +2,7 @@
 //using System.Collections.Generic;
 //using System.ComponentModel;
 //using System.Data;
-//using System.Threading.Tasks;h
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 //using System.Security;
@@ -21,7 +21,7 @@ namespace RSA1710900
 
         private RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
         private string pathKeysXML;
-        private bool isEncryptFile;
+        private bool isFile; //Ma hoa File hay Folder !
 
 
         public RSACryptosystem()
@@ -43,6 +43,7 @@ namespace RSA1710900
             this.comboBoxLengKey.Items.Add("1024 bits");
             this.comboBoxLengKey.Items.Add("2048 bits");
             this.comboBoxLengKey.Items.Add("4096 bits");
+            this.comboBoxLengKey.Items.Add("8192 bits");
             this.tbN.Enabled = false;
             this.tbD.Enabled = false;
             this.tbE.Enabled = false;
@@ -89,6 +90,7 @@ namespace RSA1710900
             else if (this.comboBoxLengKey.Text == "512 bits") lengthKey = 512;
             else if (this.comboBoxLengKey.Text == "2048 bits") lengthKey = 2048;
             else if (this.comboBoxLengKey.Text == "4096 bits") lengthKey = 4096;
+            else if (this.comboBoxLengKey.Text == "8192 bits") lengthKey = 8192;
 
             //saveFileDialog1.RestoreDirectory = false;
             String pathPrivateKey = saveFileDialog1.FileName;
@@ -201,9 +203,8 @@ namespace RSA1710900
         }
 
         private void btnOpenFileIn_Click(object sender, EventArgs e)
-        {
-            
-            isEncryptFile = true;
+        {           
+            isFile = true;
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "All Files (*.*)|*.*";
             if (op.ShowDialog() == DialogResult.OK)
@@ -216,7 +217,7 @@ namespace RSA1710900
             {
                 try
                 {
-                    System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                    Process prc = new System.Diagnostics.Process(); 
                     prc.StartInfo.FileName = tbOutput.Text;
                     prc.Start();
                 }
@@ -255,17 +256,18 @@ namespace RSA1710900
                 //RSA chỉ có thể mã hóa các khối dữ liệu ngắn hơn độ dài khóa, chia dữ liệu cho một số khối và sau đó mã hóa từng khối và sau đó hợp nhất chúng
                 
                 if (isEncrypt) // Ma hoa  //Buffer
-                    
-                    maxBytesCanEncrypted = ((RSA.KeySize - 384) / 8) + 37 ;//+  + 7: OAEP - Đệm mã hóa bất đối xứng tối ưu
+                        
+                    maxBytesCanEncrypted = RSA.KeySize / 8 - 11; //ma hoa 245 bytes du lieu thanh 256 bytes
                 
                 else  //Giai ma
-                    maxBytesCanEncrypted = (RSA.KeySize / 8); //Giai ma
+                    maxBytesCanEncrypted = RSA.KeySize / 8 ; //256 bytes
 
 
 
                 //Read from the input file, then encrypt and write to the output file.
+                
 
-                while (rdlen < totlen) // 0  64 128 192 224
+                while (rdlen < totlen) // 0  64 128 192 224 
                 {
                     if (totlen - rdlen < maxBytesCanEncrypted) 
                         maxBytesCanEncrypted = (int)(totlen - rdlen); //Block cuoi: totlen - rdlen < (RSA.KeySize - 384) / 8) + 37
@@ -274,19 +276,21 @@ namespace RSA1710900
                     len = fsInput.Read(bin, 0, maxBytesCanEncrypted); // o maxbyte -1
 
                     if (isEncrypt) 
-                        encryptedData = RSA.Encrypt(bin, false); //Mã Hoá
+                        encryptedData = RSA.Encrypt(bin, false); //Mã Hoá false = ko dem OAEP
                     else 
-                        encryptedData = RSA.Decrypt(bin, false); //Giải mã
-
+                        encryptedData = RSA.Decrypt(bin, false); //Giải mã false = ko dem OAEP
+                    //
                     fsCiperText.Write(encryptedData, 0, encryptedData.Length);
-                    rdlen = rdlen + len;    
+
+                    rdlen = rdlen + len; //trong truong hop block cuoi co the thieu byte! (ko thi + bin.Length !)
 
                     this.label1f.Text = "Tên tệp xử lý : " + Path.GetFileName(inputFile) + "\n Thành công: " + ((long)(rdlen * 100) / totlen).ToString() + " %";
                     this.label1f.Update();
                     this.label1f.Refresh();
 
-                    this.progressBar1.Value = (int)((rdlen * 100) / totlen);//thanh tiến trình
+                    this.progressBar1.Value = (int)((rdlen * 100) / totlen);  //thanh tiến trình
                 }
+                
 
                 fsCiperText.Close(); //save file
                 fsInput.Close();
@@ -300,59 +304,33 @@ namespace RSA1710900
 
         }
 
-        public byte[] Encrypt (string inputFileName)
-        {
-            string plainText = File.ReadAllText(inputFileName);
-            RSACryptoServiceProvider csp = new RSACryptoServiceProvider();
-            csp.ImportParameters(RSA.ExportParameters(false));
-            var data = Encoding.Unicode.GetBytes(plainText);
-            var cypher = csp.Encrypt(data, true); // exception :D
-            return cypher;
-        }
-
-        public byte[] Decrypt (string intputFileName)
-        {
-            string cyphertext = File.ReadAllText(intputFileName);
-            var dataBytes = Convert.FromBase64String(cyphertext); //bytes []
-            RSACryptoServiceProvider csp = new RSACryptoServiceProvider();
-            csp.ImportParameters(RSA.ExportParameters(true));
-            var plainText = csp.Decrypt(dataBytes, true); //bytes []
-            return plainText;
-        }
-
-        public void SaveFile(string outputFileName, byte[] data)
-        {
-            FileStream fsCiperText = new FileStream(outputFileName, FileMode.Create, FileAccess.Write);
-            fsCiperText.Write(data, 0, data.Length);
-            fsCiperText.Flush();
-            fsCiperText.Close();
-        }
 
         private void btnEncryptClick()
         {
             enabledOrDisableButtons(false);
 
             if (this.tbPathKeys.Text.Length == 0 || this.tbN.Text.Length == 0 || this.tbD.Text.Length == 0 || this.tbE.Text.Length == 0)
-            {                                               /// N                       //D                         //E
+            {                                               // N                       //D                         //E
                 MessageBox.Show("Key không hợp lệ!");
                 enabledOrDisableButtons(true);
                 return;
             }
 
-            //try
+            try
             {
                 if (tbInput.Text.Length != 0 /*&&
                 tbPathKeys.Text.Length != 0 &&
                 tbN.Text.Length != 0 */ )
                 {
 
-                    //Calculator time ex...
+                    //Calculator time execution
                     Stopwatch sw = Stopwatch.StartNew();
                     sw.Start();
+
                     string inputFileName = tbInput.Text, outputFileName = "";
                     
 
-                    if (isEncryptFile)
+                    if (isFile)
                     {
                         outputFileName = tbOutput.Text +"\\"+ Path.GetFileName(tbInput.Text) + ".nhom11";
                     }
@@ -363,11 +341,9 @@ namespace RSA1710900
                     RSA.FromXmlString(File.ReadAllText(this.pathKeysXML));
 
 
-                    if (isEncryptFile)
+                    if (isFile)
                     {
                         RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(true), true);
-
-                        //SaveFile(outputFileName, Encrypt(inputFileName));
                     }
 
                     else
@@ -407,11 +383,11 @@ namespace RSA1710900
                     MessageBox.Show("Dữ liệu không đủ để mã hóa!"); // Ko co du 1 trong 3: N, D, E
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    enabledOrDisableButtons(true);
-            //    MessageBox.Show("Failed: " + ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                enabledOrDisableButtons(true);
+                MessageBox.Show("Failed: " + ex.Message);
+            }
 
             enabledOrDisableButtons(true);
 
@@ -431,7 +407,7 @@ namespace RSA1710900
             }
 
             btnEncryptDecrypt s = new btnEncryptDecrypt(btnEncryptClick);
-            s.BeginInvoke(null, null);
+            s.BeginInvoke(null, null); //ko block UI Thread 
 
         }
 
@@ -440,7 +416,7 @@ namespace RSA1710900
             lbl_md5.Enabled = false;
             lbl_sha1.Enabled = false;
             lbl_sha256.Enabled = false;
-            this.isEncryptFile = true;
+            this.isFile = true;
             this.tbPathKeys.Clear();
             this.tbInput.Clear();
             this.tbN.Clear();
@@ -463,6 +439,7 @@ namespace RSA1710900
             if (this.progressBar1.Value > 0)
                 this.progressBar1.Value = 0;
         }
+
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
             if (tbOutput.Text.Length == 0)
@@ -471,7 +448,7 @@ namespace RSA1710900
                 return;
             }
             btnEncryptDecrypt s = new btnEncryptDecrypt(btnDecryptClick);
-            s.BeginInvoke(null, null);
+            s.BeginInvoke(null, null); //Ko block UI Thread
 
         }
         private void btnDecryptClick()
@@ -490,30 +467,30 @@ namespace RSA1710900
 
                     string inputFileName = tbInput.Text, outputFileName = "";
 
-                    if (isEncryptFile && Path.GetExtension(inputFileName) != ".nhom11")
+                    if (isFile && Path.GetExtension(inputFileName) != ".nhom11")
                     {
                         MessageBox.Show("Tệp tin này không được hỗ trợ đển giải mã!");
                         enabledOrDisableButtons(true);
                         return;
                     }
 
-                    if (isEncryptFile)
+                    if (isFile)
                     {
-                        
-                        outputFileName = tbOutput.Text +"\\" +Path.GetFileName(inputFileName.Substring(0, inputFileName.Length - 5));
-                      
+
+                        outputFileName = tbOutput.Text + "\\" + Path.GetFileName(inputFileName.Substring(0, inputFileName.Length - 7));
+
 
                     }
 
                     RSA = new RSACryptoServiceProvider();
                     RSA.FromXmlString(File.ReadAllText(this.pathKeysXML));
 
-                    if (isEncryptFile)
+                    if (isFile)
                         RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(true), false);
                     else
                     {
                         string[] filePaths = Directory.GetFiles(inputFileName, "*.nhom11", SearchOption.AllDirectories);
-                        if (filePaths.Length == 0 || (filePaths.Length == 1 && (Path.GetFileName(filePaths[0]) == "Thumbs.db")))
+                        if (filePaths.Length == 0 || (filePaths.Length == 1))
                         {
                             MessageBox.Show("Thư mục rỗng!");
                             enabledOrDisableButtons(true);
@@ -521,12 +498,10 @@ namespace RSA1710900
                         }
 
                         for (int i = 0; i < filePaths.Length; i++)
-                            if (Path.GetFileName(filePaths[i]) != "Thumbs.db")
-                            {
-                                outputFileName = tbOutput.Text + "\\" + Path.GetFileName(filePaths[i].Substring(0, filePaths[i].Length - 5));
-                                RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(true), false);
-
-                            }
+                        { 
+                            outputFileName = tbOutput.Text + "\\" + Path.GetFileName(filePaths[i].Substring(0, filePaths[i].Length - 7));
+                            RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(true), false);
+                        }
 
                     }
                     enabledOrDisableButtons(true);
@@ -550,7 +525,7 @@ namespace RSA1710900
   
         private void btnOpenFolderIn_Click(object sender, EventArgs e)
         {
-            isEncryptFile = false; //Xac dinh file hay folder
+            isFile = false; //Xac dinh file hay folder
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
 
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)

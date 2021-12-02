@@ -471,7 +471,7 @@
             this.panel4.Controls.Add(this.btn_chonfile);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label8);
-            this.panel4.Location = new System.Drawing.Point(651, 375);
+            this.panel4.Location = new System.Drawing.Point(664, 333);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(457, 208);
