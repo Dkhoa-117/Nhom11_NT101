@@ -16,6 +16,6 @@
   * 2048 bit:
   * 4096 bit:
 * Thời gian mã hóa: 
-  *4 file: .pdf, .txt, .jpg, .mp3. (Tổng dung lượng: )
+  * 4 file: .pdf, .txt, .jpg, .mp3. (Tổng dung lượng: )
 * Thời gian mã hóa: 
-  *4 file: .Nhom11, .Nhom11, .Nhom11, .Nhom11 (Tổng dung lượng: )
+  * 4 file: .Nhom11, .Nhom11, .Nhom11, .Nhom11 (Tổng dung lượng: )
