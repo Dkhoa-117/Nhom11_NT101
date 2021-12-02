@@ -6,7 +6,7 @@
 * Mã hóa RSA: Có 3 key length: 512 bit, 1024 bit, 2048 bit, 4096 bit.
   * Cho phép lưu khóa vào file XML (.NET Framework chỉ hỗ trợ định dạng XML).
   * Hiển thị thông tin public key và private key.
-* Mã hóa file riêng lẻ hoặc một folder gồm nhiều file (file được mã hóa dưới dạng .Nhom11).
+* Mã hóa file riêng lẻ hoặc một folder gồm nhiều file (file được mã hóa dưới dạng .nhom11).
 * Kiểm tra tính toàn vẹn file trước và sau khi mã hóa bằng các hàm băm MD5, SHA1, SHA256.
 
 ## HIỆU SUẤT (trung bình)
