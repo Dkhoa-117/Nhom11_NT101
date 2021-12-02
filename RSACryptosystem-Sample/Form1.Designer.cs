@@ -118,7 +118,7 @@
             this.label1.Location = new System.Drawing.Point(36, 103);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 17);
+            this.label1.Size = new System.Drawing.Size(91, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "File Key (Xml):";
             // 
@@ -137,7 +137,7 @@
             this.label2.Location = new System.Drawing.Point(36, 62);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 17);
+            this.label2.Size = new System.Drawing.Size(75, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Độ dài Key:";
             // 
@@ -177,7 +177,7 @@
             this.label1f.Location = new System.Drawing.Point(36, 228);
             this.label1f.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1f.Name = "label1f";
-            this.label1f.Size = new System.Drawing.Size(0, 17);
+            this.label1f.Size = new System.Drawing.Size(0, 16);
             this.label1f.TabIndex = 0;
             // 
             // panel2
@@ -199,7 +199,7 @@
             this.panel2.Location = new System.Drawing.Point(13, 246);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(625, 256);
+            this.panel2.Size = new System.Drawing.Size(625, 295);
             this.panel2.TabIndex = 1;
             // 
             // selectOutput
@@ -271,7 +271,7 @@
             this.label4.Location = new System.Drawing.Point(51, 127);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 17);
+            this.label4.Size = new System.Drawing.Size(51, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "Output: ";
             // 
@@ -308,7 +308,7 @@
             this.label3.Location = new System.Drawing.Point(51, 52);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 17);
+            this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Input: ";
             // 
@@ -364,7 +364,7 @@
             this.Module.Location = new System.Drawing.Point(4, 55);
             this.Module.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Module.Name = "Module";
-            this.Module.Size = new System.Drawing.Size(82, 17);
+            this.Module.Size = new System.Drawing.Size(76, 16);
             this.Module.TabIndex = 6;
             this.Module.Text = "Module (N):";
             // 
@@ -374,7 +374,7 @@
             this.label6.Location = new System.Drawing.Point(3, 96);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 17);
+            this.label6.Size = new System.Drawing.Size(99, 16);
             this.label6.TabIndex = 7;
             this.label6.Text = "Mũ Mã Hoá (E):";
             // 
@@ -384,13 +384,13 @@
             this.label7.Location = new System.Drawing.Point(4, 140);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 17);
+            this.label7.Size = new System.Drawing.Size(98, 16);
             this.label7.TabIndex = 8;
             this.label7.Text = "Mũ Giải Mã (D):";
             // 
             // btnReset
             // 
-            this.btnReset.Font = new System.Drawing.Font("Mistral", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Location = new System.Drawing.Point(438, 525);
             this.btnReset.Margin = new System.Windows.Forms.Padding(4);
             this.btnReset.Name = "btnReset";
@@ -434,7 +434,7 @@
             this.label16.Location = new System.Drawing.Point(13, 214);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(80, 17);
+            this.label16.Size = new System.Drawing.Size(75, 16);
             this.label16.TabIndex = 12;
             this.label16.Text = "Private Key";
             // 
@@ -444,7 +444,7 @@
             this.label15.Location = new System.Drawing.Point(-5, 178);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(145, 17);
+            this.label15.Size = new System.Drawing.Size(136, 16);
             this.label15.TabIndex = 11;
             this.label15.Text = "Public key in XML File";
             // 
@@ -507,7 +507,7 @@
             this.label12.Location = new System.Drawing.Point(89, 118);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(0, 17);
+            this.label12.Size = new System.Drawing.Size(0, 16);
             this.label12.TabIndex = 8;
             // 
             // lable12
@@ -516,7 +516,7 @@
             this.lable12.Location = new System.Drawing.Point(8, 178);
             this.lable12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lable12.Name = "lable12";
-            this.lable12.Size = new System.Drawing.Size(64, 17);
+            this.lable12.Size = new System.Drawing.Size(59, 16);
             this.lable12.TabIndex = 7;
             this.lable12.Text = "SHA256:";
             // 
@@ -526,7 +526,7 @@
             this.label11.Location = new System.Drawing.Point(8, 148);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 17);
+            this.label11.Size = new System.Drawing.Size(45, 16);
             this.label11.TabIndex = 6;
             this.label11.Text = "SHA1:";
             // 
@@ -536,7 +536,7 @@
             this.label10.Location = new System.Drawing.Point(8, 118);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 17);
+            this.label10.Size = new System.Drawing.Size(38, 16);
             this.label10.TabIndex = 5;
             this.label10.Text = "MD5:";
             // 
@@ -576,7 +576,7 @@
             this.label9.Location = new System.Drawing.Point(8, 44);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 17);
+            this.label9.Size = new System.Drawing.Size(35, 16);
             this.label9.TabIndex = 1;
             this.label9.Text = "File: ";
             // 
