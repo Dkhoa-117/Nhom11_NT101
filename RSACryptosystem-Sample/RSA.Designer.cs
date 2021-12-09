@@ -40,7 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btGenerateKey = new System.Windows.Forms.Button();
             this.btOpenFileKeys = new System.Windows.Forms.Button();
-            this.tbKeyPath = new System.Windows.Forms.TextBox();
+            this.tbPathKeys = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lbProcess = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -76,7 +76,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btGenerateKey);
             this.panel1.Controls.Add(this.btOpenFileKeys);
-            this.panel1.Controls.Add(this.tbKeyPath);
+            this.panel1.Controls.Add(this.tbPathKeys);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(13, 83);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -100,7 +100,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label13.Location = new System.Drawing.Point(240, 12);
+            this.label13.Location = new System.Drawing.Point(268, 12);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(147, 28);
@@ -200,24 +200,24 @@
             this.btOpenFileKeys.TabIndex = 2;
             this.btOpenFileKeys.Text = "Open";
             this.btOpenFileKeys.UseVisualStyleBackColor = true;
-            this.btOpenFileKeys.Click += new System.EventHandler(this.btOpenFileKeys_Click);
+            this.btOpenFileKeys.Click += new System.EventHandler(this.btnOpenFileKeys_Click);
             // 
             // tbPathKeys
             // 
-            this.tbKeyPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbKeyPath.ForeColor = System.Drawing.Color.Black;
-            this.tbKeyPath.Location = new System.Drawing.Point(145, 146);
-            this.tbKeyPath.Margin = new System.Windows.Forms.Padding(4);
-            this.tbKeyPath.Name = "tbPathKeys";
-            this.tbKeyPath.Size = new System.Drawing.Size(360, 28);
-            this.tbKeyPath.TabIndex = 1;
+            this.tbPathKeys.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPathKeys.ForeColor = System.Drawing.Color.Black;
+            this.tbPathKeys.Location = new System.Drawing.Point(145, 146);
+            this.tbPathKeys.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPathKeys.Name = "tbPathKeys";
+            this.tbPathKeys.Size = new System.Drawing.Size(360, 28);
+            this.tbPathKeys.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(240, 246);
+            this.label5.Location = new System.Drawing.Point(257, 247);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 28);
@@ -465,7 +465,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbKeyPath;
+        private System.Windows.Forms.TextBox tbPathKeys;
         private System.Windows.Forms.Label lbProcess;
         private System.Windows.Forms.Button btOpenFileKeys;
         private System.Windows.Forms.ComboBox cbbKeyLength;

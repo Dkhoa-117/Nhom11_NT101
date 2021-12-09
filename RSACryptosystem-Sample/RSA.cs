@@ -20,9 +20,7 @@ namespace RSA1710900
         private delegate void btnEncryptDecrypt();
 
         private RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-        private string KeyFolder; //Duong dan cho public va private key.
-        private string KeyPath;
-        private string PublicKeyPath;
+        private string KeyPath; //Duong dan cho public va private key.
         private bool isFile; //Ma hoa File hay Folder !
 
 
@@ -51,8 +49,6 @@ namespace RSA1710900
             this.tbPublicKey.BackColor = System.Drawing.SystemColors.Window;
             this.tbPrivateKey.ReadOnly = true;
             this.tbPrivateKey.BackColor = System.Drawing.SystemColors.Window;
-            this.tbKeyPath.ReadOnly = true;
-            this.tbKeyPath.BackColor = System.Drawing.SystemColors.Window;
             this.cbbKeyLength.Text = "1024 bits";
             Control.CheckForIllegalCrossThreadCalls = false; 
         }
@@ -74,11 +70,14 @@ namespace RSA1710900
 
         private void btGenerate_Key(object sender, EventArgs e)
         {
-
+            
             // Tạo file chứa key
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.DefaultExt = "xml";
+            saveFileDialog1.Filter = "Xml File|*.xml";
+            saveFileDialog1.Title = "Select File";
 
-            if (fbd.ShowDialog() != DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
@@ -91,119 +90,98 @@ namespace RSA1710900
             else if (this.cbbKeyLength.Text == "4096 bits") KeyLength = 4096;
             else if (this.cbbKeyLength.Text == "8192 bits") KeyLength = 8192;
 
-            KeyFolder = fbd.SelectedPath;
-            KeyPath = KeyFolder + "\\Key.xml";
+            String pathPrivateKey = saveFileDialog1.FileName;         
 
             //tạo key có độ dài lengthKey
             RSA = new RSACryptoServiceProvider(KeyLength); //tạo public key va private key có độ dài lengtheKey
 
-                     
-            
-            File.WriteAllText(KeyPath, RSA.ToXmlString(true));  // Private Key va Public Key
+                             
+            File.WriteAllText(pathPrivateKey, RSA.ToXmlString(true));  // Private Key
 
-            tbKeyPath.Text = KeyPath; //Hiển thị đường dẫn key
+            KeyPath = pathPrivateKey;
+            tbPathKeys.Text = pathPrivateKey; //Hiển thị đường dẫn key
 
-
-            XmlDocument xml = new XmlDocument();
-            xml.LoadXml(File.ReadAllText(KeyPath)); //đọc RSA Key (public && private)    
-
-            try
+            if (File.Exists(KeyPath))
             {
-                //Public Key
-
-                RSAParameters PublicKey = RSA.ExportParameters(false); //Public Key
-                var sw = new StringWriter();
-                var xs = new XmlSerializer(typeof(RSAParameters));
-                xs.Serialize(sw, PublicKey);
-                string PublicKeyXmlFile = sw.ToString(); // xuat ra file xml vao tbPublicKey 
-
-                PublicKeyPath = KeyFolder + "\\PublicKey.xml";
-                File.WriteAllText(PublicKeyPath, PublicKeyXmlFile);//Tu dong luu public key vao 1 file.
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.LoadXml(File.ReadAllText(PublicKeyPath)); //doc public key
-                XmlNode xmlNodeE = xmlDoc.SelectSingleNode("/RSAParameters/Exponent"); //E
-                XmlNode xmlNodeN = xmlDoc.SelectSingleNode("/RSAParameters/Modulus"); //N
-                string StringPublicKey = xmlNodeE.InnerText + xmlNodeN.InnerText;
-
-
-                byte[] bytes = Encoding.Default.GetBytes(StringPublicKey);
-                string HexStringPublicKey = BitConverter.ToString(bytes);
-                HexStringPublicKey = HexStringPublicKey.Replace("-", " ");
-                tbPublicKey.Text = HexStringPublicKey;
-
-                //Private Key
-
-                XmlDocument xmlDoc_Key = new XmlDocument();
-                xmlDoc_Key.LoadXml(File.ReadAllText(KeyPath));
-                XmlNode xmlNodeD = xmlDoc_Key.SelectSingleNode("/RSAKeyValue/D");
-                bytes = Encoding.Default.GetBytes(xmlNodeD.InnerText);
-                string HexStringPrivateKey = BitConverter.ToString(bytes);
-                HexStringPrivateKey = HexStringPrivateKey.Replace("-", " ");
-                tbPrivateKey.Text = HexStringPrivateKey;
-
-                MessageBox.Show("SUCCESSFUL!\n" + KeyLength.ToString() + " bits key generated",
-                    "Notification", MessageBoxButtons.OK);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btOpenFileKeys_Click(object sender, EventArgs e)
-        {
-            string KeyFile = "";
-            OpenFileDialog op = new OpenFileDialog();
-            op.Filter = "Xml File|*.xml";
-            if (op.ShowDialog() == DialogResult.OK)
-            {
-                KeyFile = op.FileName;
-                tbKeyPath.Text = op.FileName;
-            }
-
-            if (File.Exists(KeyFile))
-            {
-
-                if (Path.GetFileName(KeyFile) == "Key.xml")
+                if (Path.GetExtension(KeyPath) == ".xml") //kiểm tra định dạng
                 {
                     XmlDocument xml = new XmlDocument();
-                    xml.LoadXml(File.ReadAllText(KeyFile));
+                        xml.LoadXml(File.ReadAllText(KeyPath)); //đọc RSA Key (public && private)
+
                     try
                     {
-                        KeyPath = KeyFile;
+                        RSAParameters _publicKey = RSA.ExportParameters(false); //public Key
+                        var sw = new StringWriter();
+                        var xs = new XmlSerializer(typeof(RSAParameters));
+                        xs.Serialize(sw, _publicKey);
+                        string XmlFileOfPublicKey = sw.ToString(); // xuat ra file xml vao tbPublicKey 
+
+
+                        string pathPublicKey = "C:\\Users\\Admin\\Downloads\\pathPublicKey.xml"; //Can than :))))
+                        File.WriteAllText(pathPublicKey, XmlFileOfPublicKey);
                         XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(File.ReadAllText(KeyFile));  
-                        XmlNode xmlNode_1 = xmlDoc.SelectSingleNode("/RSAKeyValue/Exponent"); //e 
-                        XmlNode xmlNode_2 = xmlDoc.SelectSingleNode("/RSAKeyValue/Modulus"); // n 
+                        xmlDoc.LoadXml(File.ReadAllText(pathPublicKey)); //doc public key
+                        XmlNode xmlNode_1 = xmlDoc.SelectSingleNode("/RSAParameters/Exponent"); //e 
+                        XmlNode xmlNode_2 = xmlDoc.SelectSingleNode("/RSAParameters/Modulus"); //n (n,e)!!
                         string publicKey = xmlNode_1.InnerText + xmlNode_2.InnerText;
 
 
                         byte[] bytes = Encoding.Default.GetBytes(publicKey);
                         string hexStringPublicKey = BitConverter.ToString(bytes);
                         hexStringPublicKey = hexStringPublicKey.Replace("-", " ");
-                        tbPublicKey.Text = hexStringPublicKey;
+                        tbPublicKey.Text = hexStringPublicKey;               
 
-                        XmlNode xnList = xml.SelectSingleNode("/RSAKeyValue/D");
-                        bytes = Encoding.Default.GetBytes(xnList.InnerText);
+                        XmlDocument xmlDoc_Key = new XmlDocument();
+                        xmlDoc_Key.LoadXml(File.ReadAllText(KeyPath));
+                        XmlNode xmlNode_3= xmlDoc_Key.SelectSingleNode("/RSAKeyValue/D");
+                        bytes = Encoding.Default.GetBytes(xmlNode_3.InnerText);
                         string hexStringPrivateKey = BitConverter.ToString(bytes);
                         hexStringPrivateKey = hexStringPrivateKey.Replace("-", " ");
                         tbPrivateKey.Text = hexStringPrivateKey;
+
                     }
-                    catch 
+                    catch (Exception ix)
                     {
-                        MessageBox.Show("Please select Key.xml NOT PublicKey.xml");
+                        MessageBox.Show(ix.Message);
                     }
                 }
+            }
+            MessageBox.Show("Tạo key có độ dài " + KeyLength.ToString() + " bits thành công.");
 
-                if (Path.GetFileName(KeyFile) == "PublicKey.xml")
+        }
+
+        private void btnOpenFileKeys_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Xml files (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                KeyPath = op.FileName;
+                tbPathKeys.Text = op.FileName;
+            }
+
+            if (File.Exists(KeyPath))
+            {
+
+                if (Path.GetExtension(KeyPath) == ".xml")
                 {
-                    PublicKeyPath = KeyFile;
                     XmlDocument xml = new XmlDocument();
-                    xml.LoadXml(File.ReadAllText(KeyFile));
+                    xml.LoadXml(File.ReadAllText(KeyPath));
                     try
                     {
+                        XmlNode xnList = xml.SelectSingleNode("/RSAKeyValue/D");
+
+                        RSAParameters _publicKey = RSA.ExportParameters(false);
+                        var sw = new StringWriter();
+                        var xs = new XmlSerializer(typeof(RSAParameters));
+                        xs.Serialize(sw, _publicKey);
+                        string XmlFileOfPublicKey = sw.ToString(); // xuat ra file xml vao tbPublicKey 
+
+
+                        string pathPublicKey = "C:\\Users\\Admin\\Downloads\\pathPublicKey.xml"; //Can than :))))
+                        File.WriteAllText(pathPublicKey, XmlFileOfPublicKey);
                         XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(File.ReadAllText(KeyFile));
+                        xmlDoc.LoadXml(File.ReadAllText(pathPublicKey)); //doc public key
                         XmlNode xmlNode_1 = xmlDoc.SelectSingleNode("/RSAParameters/Exponent"); //e 
                         XmlNode xmlNode_2 = xmlDoc.SelectSingleNode("/RSAParameters/Modulus"); // n 
                         string publicKey = xmlNode_1.InnerText + xmlNode_2.InnerText;
@@ -212,11 +190,23 @@ namespace RSA1710900
                         byte[] bytes = Encoding.Default.GetBytes(publicKey);
                         string hexStringPublicKey = BitConverter.ToString(bytes);
                         hexStringPublicKey = hexStringPublicKey.Replace("-", " ");
+
+
+                        //byte[] bytes = Encoding.Default.GetBytes(publicKey_NoHeader);
+                        //string hexStringPublicKey = BitConverter.ToString(bytes);
+                        //hexStringPublicKey = hexStringPublicKey.Replace("-", " ");
+
                         tbPublicKey.Text = hexStringPublicKey;
+
+
+                        bytes = Encoding.Default.GetBytes(xnList.InnerText);
+                        string hexStringPrivateKey = BitConverter.ToString(bytes);
+                        hexStringPrivateKey = hexStringPrivateKey.Replace("-", " ");
+                        tbPrivateKey.Text = hexStringPrivateKey;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("Failed: " + ex.Message);
                     }
                 }
             }
@@ -329,16 +319,18 @@ namespace RSA1710900
         {
             ChangeButtonState(false);
 
-            if (this.PublicKeyPath.Length == 0)
+            if (this.tbPathKeys.Text.Length == 0)
             {                                              
-                MessageBox.Show("Missing public key");
+                MessageBox.Show("Key không hợp lệ!");
                 ChangeButtonState(true);
                 return;
             }
 
             try
             {
-                if (tbInput.Text.Length != 0 )
+                if (tbInput.Text.Length != 0 /*&&
+                tbPathKeys.Text.Length != 0 &&
+                tbN.Text.Length != 0 */ )
                 {
 
                     //Calculator time execution
@@ -356,7 +348,8 @@ namespace RSA1710900
 
                     //get Keys.
                     RSA = new RSACryptoServiceProvider();
-                    RSA.FromXmlString(File.ReadAllText(this.tbPublicKey.Text));
+                    RSA.FromXmlString(File.ReadAllText(this.KeyPath));
+
 
                     if (isFile)
                     {
@@ -417,7 +410,7 @@ namespace RSA1710900
                 MessageBox.Show("Vui lòng chọn đường dẫn đến thư mục Output");
                 return;
             }
-            if (tbKeyPath.Text.Length == 0)
+            if (tbPathKeys.Text.Length == 0)
             {
                 MessageBox.Show("Vui lòng chọn đường dẫn đến Key!");
                 return;
@@ -432,14 +425,14 @@ namespace RSA1710900
         {
            
             this.isFile = true;
-            this.tbKeyPath.Clear();
+            this.tbPathKeys.Clear();
             this.tbInput.Clear();
             this.tbPublicKey.Clear();
             this.tbPrivateKey.Clear(); 
             
 
             this.tbOutput.Clear();
-            this.KeyFolder = "";
+            this.KeyPath = "";
             this.cbbKeyLength.Text = "1024 bits";
             this.lbProcess.Text = "";
             this.lbProcess.Update();
@@ -466,7 +459,7 @@ namespace RSA1710900
             try
             {
                 if (tbInput.Text.Length != 0 &&
-                   KeyPath.Length != 0)
+                   tbPathKeys.Text.Length != 0)
                 {
                     //Calculator time ex...
                     Stopwatch sw = Stopwatch.StartNew();
@@ -490,7 +483,7 @@ namespace RSA1710900
                     }
 
                     RSA = new RSACryptoServiceProvider();
-                    RSA.FromXmlString(File.ReadAllText(this.KeyFolder));
+                    RSA.FromXmlString(File.ReadAllText(this.KeyPath));
 
                     if (isFile)
                         RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(true), false);
