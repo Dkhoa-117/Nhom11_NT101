@@ -264,7 +264,7 @@
             this.btCheckFile.TabIndex = 16;
             this.btCheckFile.Text = "Check Hash Value";
             this.btCheckFile.UseVisualStyleBackColor = true;
-            this.btCheckFile.Click += new System.EventHandler(this.btnCheckFile_Click);
+            this.btCheckFile.Click += new System.EventHandler(this.btCheckFile_Click);
             // 
             // btFolderOut
             // 
@@ -419,7 +419,7 @@
             this.btnReset.TabIndex = 9;
             this.btnReset.Text = "RESET";
             this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnReset.Click += new System.EventHandler(this.btReset_Click);
             // 
             // panel5
             // 

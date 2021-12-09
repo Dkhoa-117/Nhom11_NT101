@@ -486,7 +486,7 @@ namespace RSA
 
         }
 
-        private void btnCheckFile_Click(object sender, EventArgs e)
+        private void btCheckFile_Click(object sender, EventArgs e)
         {
             var CheckFile = new HashCheck();
             CheckFile.Show();
@@ -513,7 +513,7 @@ namespace RSA
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btReset_Click(object sender, EventArgs e)
         {
             KeyPath = null;
             PublicKeyPath = null;
@@ -553,7 +553,7 @@ namespace RSA
         {
             if (MessageBox.Show("Do you want to quit?", "Notification", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
             {
-                e.Cancel = true;
+                e.Cancel = true;    
             }
         }
     }
