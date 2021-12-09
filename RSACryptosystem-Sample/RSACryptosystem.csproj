@@ -70,19 +70,19 @@
     <Compile Include="RSA.Designer.cs">
       <DependentUpon>RSA.cs</DependentUpon>
     </Compile>
-    <Compile Include="KiemTraFile.cs">
+    <Compile Include="HashCheck.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KiemTraFile.Designer.cs">
-      <DependentUpon>KiemTraFile.cs</DependentUpon>
+    <Compile Include="HashCheck.Designer.cs">
+      <DependentUpon>HashCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="RSA.resx">
       <DependentUpon>RSA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KiemTraFile.resx">
-      <DependentUpon>KiemTraFile.cs</DependentUpon>
+    <EmbeddedResource Include="HashCheck.resx">
+      <DependentUpon>HashCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

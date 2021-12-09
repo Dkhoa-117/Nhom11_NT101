@@ -1,4 +1,4 @@
-﻿namespace RSA1710900
+﻿namespace RSA
 {
     partial class RSACryptosystem
     {
@@ -40,16 +40,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btGenerateKey = new System.Windows.Forms.Button();
             this.btOpenFileKeys = new System.Windows.Forms.Button();
-            this.tbPathKeys = new System.Windows.Forms.TextBox();
+            this.tbKeyPath = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lbProcess = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btCheckFile = new System.Windows.Forms.Button();
-            this.btSelectOutput = new System.Windows.Forms.Button();
+            this.btFolderOut = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btOpenFolderIn = new System.Windows.Forms.Button();
             this.pgbProcess = new System.Windows.Forms.ProgressBar();
-            this.btnOutOpen = new System.Windows.Forms.Button();
+            this.btnShowResult = new System.Windows.Forms.Button();
             this.btDecrypt = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btEncrypt = new System.Windows.Forms.Button();
@@ -76,14 +76,13 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btGenerateKey);
             this.panel1.Controls.Add(this.btOpenFileKeys);
-            this.panel1.Controls.Add(this.tbPathKeys);
+            this.panel1.Controls.Add(this.tbKeyPath);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(13, 83);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(634, 469);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tbPrivateKey
             // 
@@ -100,7 +99,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label13.Location = new System.Drawing.Point(268, 12);
+            this.label13.Location = new System.Drawing.Point(240, 12);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(147, 28);
@@ -200,24 +199,24 @@
             this.btOpenFileKeys.TabIndex = 2;
             this.btOpenFileKeys.Text = "Open";
             this.btOpenFileKeys.UseVisualStyleBackColor = true;
-            this.btOpenFileKeys.Click += new System.EventHandler(this.btnOpenFileKeys_Click);
+            this.btOpenFileKeys.Click += new System.EventHandler(this.btOpenFileKeys_Click);
             // 
-            // tbPathKeys
+            // tbKeyPath
             // 
-            this.tbPathKeys.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPathKeys.ForeColor = System.Drawing.Color.Black;
-            this.tbPathKeys.Location = new System.Drawing.Point(145, 146);
-            this.tbPathKeys.Margin = new System.Windows.Forms.Padding(4);
-            this.tbPathKeys.Name = "tbPathKeys";
-            this.tbPathKeys.Size = new System.Drawing.Size(360, 28);
-            this.tbPathKeys.TabIndex = 1;
+            this.tbKeyPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbKeyPath.ForeColor = System.Drawing.Color.Black;
+            this.tbKeyPath.Location = new System.Drawing.Point(145, 146);
+            this.tbKeyPath.Margin = new System.Windows.Forms.Padding(4);
+            this.tbKeyPath.Name = "tbKeyPath";
+            this.tbKeyPath.Size = new System.Drawing.Size(360, 28);
+            this.tbKeyPath.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(257, 247);
+            this.label5.Location = new System.Drawing.Point(240, 246);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 28);
@@ -230,19 +229,19 @@
             this.lbProcess.Location = new System.Drawing.Point(23, 309);
             this.lbProcess.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbProcess.Name = "lbProcess";
-            this.lbProcess.Size = new System.Drawing.Size(578, 70);
+            this.lbProcess.Size = new System.Drawing.Size(587, 70);
             this.lbProcess.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.btCheckFile);
-            this.panel2.Controls.Add(this.btSelectOutput);
+            this.panel2.Controls.Add(this.btFolderOut);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.btOpenFolderIn);
             this.panel2.Controls.Add(this.pgbProcess);
             this.panel2.Controls.Add(this.lbProcess);
-            this.panel2.Controls.Add(this.btnOutOpen);
+            this.panel2.Controls.Add(this.btnShowResult);
             this.panel2.Controls.Add(this.btDecrypt);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btEncrypt);
@@ -259,7 +258,7 @@
             // btCheckFile
             // 
             this.btCheckFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCheckFile.Location = new System.Drawing.Point(168, 402);
+            this.btCheckFile.Location = new System.Drawing.Point(43, 396);
             this.btCheckFile.Name = "btCheckFile";
             this.btCheckFile.Size = new System.Drawing.Size(264, 44);
             this.btCheckFile.TabIndex = 16;
@@ -267,18 +266,18 @@
             this.btCheckFile.UseVisualStyleBackColor = true;
             this.btCheckFile.Click += new System.EventHandler(this.btnCheckFile_Click);
             // 
-            // btSelectOutput
+            // btFolderOut
             // 
-            this.btSelectOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSelectOutput.ForeColor = System.Drawing.Color.Black;
-            this.btSelectOutput.Location = new System.Drawing.Point(472, 126);
-            this.btSelectOutput.Margin = new System.Windows.Forms.Padding(4);
-            this.btSelectOutput.Name = "btSelectOutput";
-            this.btSelectOutput.Size = new System.Drawing.Size(129, 28);
-            this.btSelectOutput.TabIndex = 15;
-            this.btSelectOutput.Text = "Select Folder";
-            this.btSelectOutput.UseVisualStyleBackColor = true;
-            this.btSelectOutput.Click += new System.EventHandler(this.selectOutput_Click);
+            this.btFolderOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFolderOut.ForeColor = System.Drawing.Color.Black;
+            this.btFolderOut.Location = new System.Drawing.Point(472, 143);
+            this.btFolderOut.Margin = new System.Windows.Forms.Padding(4);
+            this.btFolderOut.Name = "btFolderOut";
+            this.btFolderOut.Size = new System.Drawing.Size(129, 28);
+            this.btFolderOut.TabIndex = 15;
+            this.btFolderOut.Text = "Select Folder";
+            this.btFolderOut.UseVisualStyleBackColor = true;
+            this.btFolderOut.Click += new System.EventHandler(this.btFolderOut_Click);
             // 
             // label14
             // 
@@ -303,7 +302,7 @@
             this.btOpenFolderIn.TabIndex = 12;
             this.btOpenFolderIn.Text = "Select Folder";
             this.btOpenFolderIn.UseVisualStyleBackColor = true;
-            this.btOpenFolderIn.Click += new System.EventHandler(this.btnOpenFolderIn_Click);
+            this.btOpenFolderIn.Click += new System.EventHandler(this.btOpenFolderIn_Click);
             // 
             // pgbProcess
             // 
@@ -314,18 +313,18 @@
             this.pgbProcess.Size = new System.Drawing.Size(497, 28);
             this.pgbProcess.TabIndex = 9;
             // 
-            // btnOutOpen
+            // btnShowResult
             // 
-            this.btnOutOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOutOpen.ForeColor = System.Drawing.Color.Black;
-            this.btnOutOpen.Location = new System.Drawing.Point(472, 162);
-            this.btnOutOpen.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOutOpen.Name = "btnOutOpen";
-            this.btnOutOpen.Size = new System.Drawing.Size(129, 28);
-            this.btnOutOpen.TabIndex = 9;
-            this.btnOutOpen.Text = "Open Folder";
-            this.btnOutOpen.UseVisualStyleBackColor = true;
-            this.btnOutOpen.Click += new System.EventHandler(this.btnOutOpen_Click);
+            this.btnShowResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowResult.ForeColor = System.Drawing.Color.Black;
+            this.btnShowResult.Location = new System.Drawing.Point(326, 396);
+            this.btnShowResult.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowResult.Name = "btnShowResult";
+            this.btnShowResult.Size = new System.Drawing.Size(264, 44);
+            this.btnShowResult.TabIndex = 9;
+            this.btnShowResult.Text = "Show Result";
+            this.btnShowResult.UseVisualStyleBackColor = true;
+            this.btnShowResult.Click += new System.EventHandler(this.btShowResult_Click);
             // 
             // btDecrypt
             // 
@@ -408,7 +407,7 @@
             this.btOpenFileIn.TabIndex = 0;
             this.btOpenFileIn.Text = "Select File";
             this.btOpenFileIn.UseVisualStyleBackColor = true;
-            this.btOpenFileIn.Click += new System.EventHandler(this.btnOpenFileIn_Click);
+            this.btOpenFileIn.Click += new System.EventHandler(this.btOpenFileIn_Click);
             // 
             // btnReset
             // 
@@ -465,7 +464,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbPathKeys;
+        private System.Windows.Forms.TextBox tbKeyPath;
         private System.Windows.Forms.Label lbProcess;
         private System.Windows.Forms.Button btOpenFileKeys;
         private System.Windows.Forms.ComboBox cbbKeyLength;
@@ -475,7 +474,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btOpenFileIn;
         private System.Windows.Forms.TextBox tbOutput;
-        private System.Windows.Forms.Button btnOutOpen;
+        private System.Windows.Forms.Button btnShowResult;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btDecrypt;
         private System.Windows.Forms.Button btEncrypt;
@@ -485,7 +484,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btSelectOutput;
+        private System.Windows.Forms.Button btFolderOut;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbPublicKey;

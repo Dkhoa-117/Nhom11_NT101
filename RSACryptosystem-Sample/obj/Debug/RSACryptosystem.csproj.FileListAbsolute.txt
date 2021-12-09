@@ -20,3 +20,15 @@ C:\Users\Admin\Desktop\Nhom14_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosy
 C:\Users\Admin\Desktop\Nhom14_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.exe
 C:\Users\Admin\Desktop\Nhom14_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.pdb
 C:\Users\Admin\Desktop\Nhom14_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.KiemTraFile.resources
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.exe.config
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.exe
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.pdb
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.Properties.Resources.resources
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.exe
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.pdb
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA.RSACryptosystem.resources
+C:\Users\Admin\Desktop\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA.HashCheck.resources
