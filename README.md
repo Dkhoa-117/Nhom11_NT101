@@ -1,6 +1,6 @@
 # Nhom11_NT101 
 
- Đồ án Cuối kỳ: RSA
+ Đồ án Cuối kỳ: RSA (PHIÊN BẢN BACKUP)
 
  ## TÍNH NĂNG
  * Mã hóa RSA: Có 3 key length: **512 bit**, **1024 bit**, **2048 bit**, **4096 bit**.
