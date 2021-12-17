@@ -497,10 +497,10 @@ namespace RSA
             this.tbPublicKey.Clear();
             this.tbPrivateKey.Clear();
 
-
+            this.btShowResult.Enabled = false;
             this.tbOutput.Clear();
             this.KeyFolder = "";
-            this.cbbKeyLength.Text = "1024 bits";
+            this.cbbKeyLength.Text = "512 bits";
             this.lbProcess.Text = "";
             this.lbProcess.Update();
             RSA = new RSACryptoServiceProvider();
@@ -545,7 +545,7 @@ namespace RSA
                 LineAlignment = StringAlignment.Center
             };
             btShowResult.Text = string.Empty;
-            e.Graphics.DrawString("btShowResult", btn.Font, drawBrush, e.ClipRectangle, sf);
+            e.Graphics.DrawString("Show Result", btn.Font, drawBrush, e.ClipRectangle, sf);
             drawBrush.Dispose();
             sf.Dispose();
         }
