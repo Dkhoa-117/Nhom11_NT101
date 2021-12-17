@@ -21,11 +21,11 @@
  * Thời gian giải mã: **72.95**
    * 4 file: Với loại file đã mã hoá là .nhom11 (Tổng dung lượng: _5.42MB_)
 
-![image](https://github.com/Dkhoa-117/Nhom11_NT101/blob/main/ref.%20pic/encrypt.png)
-_Chạy thử Mã hoá folder_
+<img src="https://github.com/Dkhoa-117/Nhom11_NT101/blob/main/ref.%20pic/encrypt.png" width="50%" height="50%">
+_Hình 1: Chạy thử Mã hoá folder_
 
-![image](https://github.com/Dkhoa-117/Nhom11_NT101/blob/main/ref.%20pic/decrypt.png)
-_Chạy thử Giải mã folder_
+<img src="https://github.com/Dkhoa-117/Nhom11_NT101/blob/main/ref.%20pic/decrypt.png" width="50%" height="50%">
+_Hình 2: Chạy thử Giải mã folder_
 
 ### NOTE:
 * Cần 1 bản backup (không dùng bộ đệm)
