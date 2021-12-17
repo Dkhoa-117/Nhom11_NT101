@@ -137,6 +137,7 @@ namespace RSA
             MessageBox.Show(
                 KeyLength.ToString() + " bits key generated\n" 
                 + "Time to generate key: " + elapsedMs.ToString(), "SUCCESSFUL", MessageBoxButtons.OK);
+
         }
 
         private void btOpenFileKeys_Click(object sender, EventArgs e)

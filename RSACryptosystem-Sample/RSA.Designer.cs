@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RSACryptosystem));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tbPrivateKey = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tbPublicKey = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@
             this.btOpenFileIn = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(634, 469);
             this.panel1.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("flowLayoutPanel1.BackgroundImage")));
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(481, 184);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(127, 110);
+            this.flowLayoutPanel1.TabIndex = 14;
             // 
             // tbPrivateKey
             // 
@@ -468,15 +477,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(328, 80);
             this.panel5.TabIndex = 13;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("flowLayoutPanel1.BackgroundImage")));
-            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(481, 184);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(127, 110);
-            this.flowLayoutPanel1.TabIndex = 14;
             // 
             // RSACryptosystem
             // 
