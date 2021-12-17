@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Text;
+using System.Drawing;
 
 namespace RSA
 {
@@ -606,6 +607,27 @@ namespace RSA
             {
                 e.Cancel = true;    
             }
+        }
+
+        private void btShowResult_EnabledChanged(object sender, EventArgs e)
+        {
+            btShowResult.ForeColor = ((Button)sender).Enabled == true ? Color.Black : Color.DarkGray;
+            btShowResult.BackColor = ((Button)sender).Enabled == true ? SystemColors.Window : SystemColors.ControlLight;
+        }
+
+        private void btShowResult_Paint(object sender, PaintEventArgs e)
+        {
+            dynamic btn = (Button)sender;
+            dynamic drawBrush = new SolidBrush(btn.ForeColor);
+            dynamic sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            btShowResult.Text = string.Empty;
+            e.Graphics.DrawString("btShowResult", btn.Font, drawBrush, e.ClipRectangle, sf);
+            drawBrush.Dispose();
+            sf.Dispose();
         }
     }
 }

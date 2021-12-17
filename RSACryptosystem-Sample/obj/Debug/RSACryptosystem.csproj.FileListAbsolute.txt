@@ -44,3 +44,15 @@ C:\Users\Admin\Downloads\main\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSAC
 C:\Users\Admin\Downloads\main\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Downloads\main\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.exe
 C:\Users\Admin\Downloads\main\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.pdb
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.exe.config
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.exe
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\bin\Debug\RSA1710900.pdb
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.AssemblyReference.cache
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA.RSACryptosystem.resources
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA.HashCheck.resources
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.Properties.Resources.resources
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSACryptosystem.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.exe
+C:\Users\Admin\Downloads\main_17.12\Nhom11_NT101\RSACryptosystem-Sample\obj\Debug\RSA1710900.pdb
