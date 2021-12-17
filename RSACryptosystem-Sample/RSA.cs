@@ -612,8 +612,8 @@ namespace RSA
 
         private void btShowResult_EnabledChanged(object sender, EventArgs e)
         {
-            btShowResult.ForeColor = ((Button)sender).Enabled == true ? Color.Black : Color.DarkGray;
-            btShowResult.BackColor = ((Button)sender).Enabled == true ? SystemColors.Window : SystemColors.ControlLight;
+            btShowResult.ForeColor = ((Button)sender).Enabled == true ? Color.White : Color.DarkGray;
+            btShowResult.BackColor = ((Button)sender).Enabled == true ? Color.ForestGreen : SystemColors.ControlLight;
         }
 
         private void btShowResult_Paint(object sender, PaintEventArgs e)
@@ -626,7 +626,7 @@ namespace RSA
                 LineAlignment = StringAlignment.Center
             };
             btShowResult.Text = string.Empty;
-            e.Graphics.DrawString("btShowResult", btn.Font, drawBrush, e.ClipRectangle, sf);
+            e.Graphics.DrawString("ShowResult", btn.Font, drawBrush, e.ClipRectangle, sf);
             drawBrush.Dispose();
             sf.Dispose();
         }
