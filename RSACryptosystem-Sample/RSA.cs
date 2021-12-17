@@ -24,6 +24,9 @@ namespace RSA
         private string KeyPath = "";
         private string PublicKeyPath = "";
         private bool isFile; //Ma hoa File hay Folder !
+        private string EncryptedPath = "";
+        private string DecryptedPath = "";
+        bool isValidated = true;
 
         public RSACryptosystem()
         {
@@ -44,8 +47,9 @@ namespace RSA
             this.tbPrivateKey.BackColor = System.Drawing.SystemColors.Window;
             this.tbKeyPath.ReadOnly = true;
             this.tbKeyPath.BackColor = System.Drawing.SystemColors.Window;
-            this.cbbKeyLength.Text = "1024 bits";
+            this.cbbKeyLength.Text = "512 bits";
             Control.CheckForIllegalCrossThreadCalls = false;
+            this.btShowResult.Enabled = false;
         }
 
         private void btGenerate_Key(object sender, EventArgs e)
@@ -60,12 +64,15 @@ namespace RSA
             }
 
             int KeyLength = 0;
-
-            if (this.cbbKeyLength.Text == "1024 bits") KeyLength = 1024;
-            else if (this.cbbKeyLength.Text == "512 bits") KeyLength = 512;
+            
+            if (this.cbbKeyLength.Text == "512 bits") KeyLength = 512;
+            else if (this.cbbKeyLength.Text == "1024 bits") KeyLength = 1024;
             else if (this.cbbKeyLength.Text == "2048 bits") KeyLength = 2048;
             else if (this.cbbKeyLength.Text == "4096 bits") KeyLength = 4096;
             else if (this.cbbKeyLength.Text == "8192 bits") KeyLength = 8192;
+
+            Stopwatch SW = Stopwatch.StartNew();
+            SW.Start();
 
             KeyFolder = fbd.SelectedPath;
             KeyPath = KeyFolder + "\\Key.xml";
@@ -117,13 +124,18 @@ namespace RSA
                 HexStringPrivateKey = HexStringPrivateKey.Replace("-", " ");
                 tbPrivateKey.Text = HexStringPrivateKey;
 
-                MessageBox.Show("SUCCESSFUL!\n" + KeyLength.ToString() + " bits key generated",
-                    "Notification", MessageBoxButtons.OK);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
+            SW.Stop();
+            double elapsedMs = SW.Elapsed.TotalMilliseconds / 1000;
+            MessageBox.Show(
+                KeyLength.ToString() + " bits key generated\n" 
+                + "Time to generate key: " + elapsedMs.ToString(), "SUCCESSFUL", MessageBoxButtons.OK);
         }
 
         private void btOpenFileKeys_Click(object sender, EventArgs e)
@@ -272,6 +284,7 @@ namespace RSA
                     if (isFile)
                     {
                         outputFileName = tbOutput.Text + "\\" + Path.GetFileName(tbInput.Text) + ".nhom11";
+                        EncryptedPath = outputFileName;
                     }
 
 
@@ -284,7 +297,8 @@ namespace RSA
 
                     if (isFile)
                     {
-                        RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(false), true);
+                        if(!RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(false), true))
+                            isValidated = false; 
                     }
 
                     else
@@ -303,9 +317,8 @@ namespace RSA
                         for (int i = 0; i < filePaths.Length; i++) //Ma hoa tung file.
                         {
                             outputFileName = tbOutput.Text + "\\" + Path.GetFileName(filePaths[i]) + ".nhom11";
-                            //if (Path.GetFileName(filePaths[i]) != "Thumbs.db")
-                            RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(false), true);
-                            //SaveFile(outputFileName, Encrypt(inputFileName));
+                            if(!RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(false), true))
+                                isValidated = false;
 
                         }
                     }
@@ -314,8 +327,11 @@ namespace RSA
                     ChangeButtonState(true);
                     sw.Stop();
                     double elapsedMs = sw.Elapsed.TotalMilliseconds / 1000;
-                    MessageBox.Show("Encrypting time: " + elapsedMs.ToString() + "s");
-
+                        if (isValidated)
+                        {
+                            MessageBox.Show("Encrypting time: " + elapsedMs.ToString() + "s");
+                            btShowResult.Enabled = true;
+                        }
                     ChangeButtonState(true);
                 }
                 else
@@ -374,13 +390,18 @@ namespace RSA
                     if (isFile)
                     {
                         outputFileName = tbOutput.Text + "\\" + Path.GetFileName(inputFileName.Substring(0, inputFileName.Length - 7));
+                        DecryptedPath = outputFileName;
                     }
 
                     RSA = new RSACryptoServiceProvider();
                     RSA.FromXmlString(File.ReadAllText(this.KeyPath));
 
                     if (isFile)
-                        RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(true), false);
+                    {
+                        if (!RSA_Algorithm(inputFileName, outputFileName, RSA.ExportParameters(true), false))
+                            isValidated = false;
+
+                    }
                     else
                     {
                         string[] filePaths = Directory.GetFiles(inputFileName, "*.nhom11", SearchOption.AllDirectories);
@@ -394,14 +415,19 @@ namespace RSA
                         for (int i = 0; i < filePaths.Length; i++)
                         {
                             outputFileName = tbOutput.Text + "\\" + Path.GetFileName(filePaths[i].Substring(0, filePaths[i].Length - 7));
-                            RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(true), false);
+                            if (!RSA_Algorithm(filePaths[i], outputFileName, RSA.ExportParameters(true), false))
+                                isValidated = false;
                         }
 
                     }
                     ChangeButtonState(true);
                     sw.Stop();
                     double elapsedMs = sw.Elapsed.TotalMilliseconds / 1000;
-                    MessageBox.Show("Decrypting time: " + elapsedMs.ToString() + "s");
+                    if (isValidated)
+                    {
+                        MessageBox.Show("Decrypting time: " + elapsedMs.ToString() + "s");
+                        btShowResult.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -416,7 +442,7 @@ namespace RSA
             ChangeButtonState(true);
         }
 
-        private void RSA_Algorithm(string inputFile, string outputFile, RSAParameters RSAKeyInfo, bool isEncrypt)
+        private bool RSA_Algorithm(string inputFile, string outputFile, RSAParameters RSAKeyInfo, bool isEncrypt)
         {
             try
             {
@@ -476,6 +502,7 @@ namespace RSA
 
                 fsCiperText.Close(); //save file
                 fsInput.Close();
+                return true;
 
             }
 
@@ -483,7 +510,7 @@ namespace RSA
             {
                 MessageBox.Show("Failed: " + ex.Message);
             }
-
+            return false;
         }
 
         private void btCheckFile_Click(object sender, EventArgs e)
@@ -494,7 +521,7 @@ namespace RSA
 
         private void btShowResult_Click(object sender, EventArgs e)
         {
-            if (tbOutput.Text.Length > 0)
+            if (!isFile)
             {
                 try
                 {
@@ -507,9 +534,33 @@ namespace RSA
                     MessageBox.Show("Failed: " + ioex.Message);
                 }
             }
-            else
+            else if (isFile)
             {
-                MessageBox.Show("Please select the path to result!");
+                if (DecryptedPath == "") //encrypt
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start("Notepad.exe", EncryptedPath);
+                    }
+                    catch (Exception ioex)
+                    {
+                        MessageBox.Show("Failed: " + ioex.Message);
+                    }
+                }
+
+                else if (DecryptedPath != "")// decrypt
+                {
+                    try
+                    {
+                        Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = DecryptedPath;
+                        prc.Start();
+                    }
+                    catch (Exception ioex)
+                    {
+                        MessageBox.Show("Failed: " + ioex.Message);
+                    }
+                }
             }
         }
 
@@ -538,7 +589,7 @@ namespace RSA
         private void ChangeButtonState(bool isEnable)
         {
             this.btnReset.Enabled = isEnable;
-            this.btnShowResult.Enabled = isEnable;
+            this.btShowResult.Enabled = isEnable;
             this.tbOutput.Enabled = isEnable;
             this.btEncrypt.Enabled = isEnable;
             this.btDecrypt.Enabled = isEnable;
