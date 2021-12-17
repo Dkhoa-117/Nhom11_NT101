@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Text;
+using System.Drawing;
 
 namespace RSA
 {
@@ -122,11 +123,7 @@ namespace RSA
                 string HexStringPrivateKey = BitConverter.ToString(bytes);
                 HexStringPrivateKey = HexStringPrivateKey.Replace("-", " ");
                 tbPrivateKey.Text = HexStringPrivateKey;
-
-                MessageBox.Show("SUCCESSFUL!\n" + KeyLength.ToString() + " bits key generated",
-                    "Notification", MessageBoxButtons.OK);
-                
-                
+      
             }
             catch (Exception ex)
             {
@@ -135,7 +132,9 @@ namespace RSA
             }
             SW.Stop();
             double elapsedMs = SW.Elapsed.TotalMilliseconds / 1000;
-            MessageBox.Show("Time to generate key: " + elapsedMs.ToString());
+            MessageBox.Show(
+               KeyLength.ToString() + " bits key generated.\n"
+               + "Time to generate key: " + elapsedMs.ToString() + "s." , "SUCCESSFUL", MessageBoxButtons.OK);
         }
 
         private void btOpenFileKeys_Click(object sender, EventArgs e)
@@ -441,7 +440,7 @@ namespace RSA
                     this.pgbProcess.Value = (int)100;  //thanh tiến trình
 
                     fsCipherText.Close();
-                    return true;
+                    return true;    
                 }
                 else
                 {
@@ -486,10 +485,6 @@ namespace RSA
                 {
                     MessageBox.Show("Failed: " + ioex.Message);
                 }
-            else
-            {
-                MessageBox.Show("Please select the path to result!");
-            }
         }
 
         private void btReset_Click(object sender, EventArgs e)
@@ -523,7 +518,6 @@ namespace RSA
             this.btGenerateKey.Enabled = isEnable;
             this.btOpenFileIn.Enabled = isEnable;
             this.btOpenFileKeys.Enabled = isEnable;
-            this.btOpenFolderIn.Enabled = isEnable;
             this.btFolderOut.Enabled = isEnable;
         }
 
@@ -534,6 +528,28 @@ namespace RSA
                 e.Cancel = true;    
             }
         }
+
+        private void btShowResult_EnabledChanged(object sender, EventArgs e)
+        {
+            btShowResult.ForeColor = ((Button)sender).Enabled == true ? Color.Black : Color.DarkGray;
+            btShowResult.BackColor = ((Button)sender).Enabled == true ? Color.MintCream : SystemColors.ControlLight;
+        }
+
+        private void btShowResult_Paint(object sender, PaintEventArgs e)
+        {
+            dynamic btn = (Button)sender;
+            dynamic drawBrush = new SolidBrush(btn.ForeColor);
+            dynamic sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            btShowResult.Text = string.Empty;
+            e.Graphics.DrawString("btShowResult", btn.Font, drawBrush, e.ClipRectangle, sf);
+            drawBrush.Dispose();
+            sf.Dispose();
+        }
+
     }
 }
 
