@@ -407,7 +407,7 @@ namespace RSA
                     else
                     {
                         string[] filePaths = Directory.GetFiles(inputFileName, "*.nhom11", SearchOption.AllDirectories);
-                        if (filePaths.Length == 0 || (filePaths.Length == 1))
+                        if (filePaths.Length == 0)
                         {
                             MessageBox.Show("Empty folder!");
                             ChangeButtonState(true);
