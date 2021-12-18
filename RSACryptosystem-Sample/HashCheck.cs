@@ -19,31 +19,31 @@ namespace RSA
             InitializeComponent();
         }
 
-        private void KiemTraFile_Load(object sender, EventArgs e)
+        private void HashCheck_Load(object sender, EventArgs e)
         {
-            txt_md5.ReadOnly = true;
-            txt_sha1.ReadOnly = true;
-            txt_sha256.ReadOnly = true;
-            txt_md5.BackColor = System.Drawing.SystemColors.Window;
-            txt_sha1.BackColor = System.Drawing.SystemColors.Window;
-            txt_sha256.BackColor = System.Drawing.SystemColors.Window;
-            txt_input.Clear();
+            txtMD5.ReadOnly = true;
+            txtSHA1.ReadOnly = true;
+            txtSHA256.ReadOnly = true;
+            txtMD5.BackColor = System.Drawing.SystemColors.Window;
+            txtSHA1.BackColor = System.Drawing.SystemColors.Window;
+            txtSHA256.BackColor = System.Drawing.SystemColors.Window;
+            txtInput.Clear();
         }
 
-        private void btn_checksum_Click(object sender, EventArgs e)
+        private void btCheckSum_Click(object sender, EventArgs e)
         {
-            txt_md5.Text = MD5(txt_input.Text);
-            txt_sha1.Text = SHA1(txt_input.Text);
-            txt_sha256.Text = SHA256(txt_input.Text);
+            txtMD5.Text = MD5(txtInput.Text);
+            txtSHA1.Text = SHA1(txtInput.Text);
+            txtSHA256.Text = SHA256(txtInput.Text);
         }
 
-        private void btn_chonfile_Click(object sender, EventArgs e)
+        private void btOpenFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    txt_input.Text = dialog.FileName;
+                    txtInput.Text = dialog.FileName;
                 }
             }
         }
@@ -102,8 +102,15 @@ namespace RSA
                 MessageBox.Show(ex.Message.ToString());
                 return null;
             }
+
         }
 
-
+        private void btReset_Click(object sender, EventArgs e)
+        {
+            txtInput.Text = null;
+            txtMD5.Text = null;
+            txtSHA1.Text = null;
+            txtSHA256.Text = null;
+        }
     }
 }

@@ -29,50 +29,50 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HashCheck));
-            this.txt_sha1 = new System.Windows.Forms.TextBox();
-            this.txt_sha256 = new System.Windows.Forms.TextBox();
-            this.txt_md5 = new System.Windows.Forms.TextBox();
+            this.txtSHA1 = new System.Windows.Forms.TextBox();
+            this.txtSHA256 = new System.Windows.Forms.TextBox();
+            this.txtMD5 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.lable12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.btn_checksum = new System.Windows.Forms.Button();
-            this.txt_input = new System.Windows.Forms.TextBox();
-            this.btn_chonfile = new System.Windows.Forms.Button();
+            this.btCheckSum = new System.Windows.Forms.Button();
+            this.txtInput = new System.Windows.Forms.TextBox();
+            this.btOpenFile = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.btReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txt_sha1
+            // txtSHA1
             // 
-            this.txt_sha1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sha1.ForeColor = System.Drawing.Color.Black;
-            this.txt_sha1.Location = new System.Drawing.Point(101, 156);
-            this.txt_sha1.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_sha1.Name = "txt_sha1";
-            this.txt_sha1.Size = new System.Drawing.Size(398, 26);
-            this.txt_sha1.TabIndex = 38;
+            this.txtSHA1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSHA1.ForeColor = System.Drawing.Color.Black;
+            this.txtSHA1.Location = new System.Drawing.Point(101, 156);
+            this.txtSHA1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSHA1.Name = "txtSHA1";
+            this.txtSHA1.Size = new System.Drawing.Size(398, 26);
+            this.txtSHA1.TabIndex = 38;
             // 
-            // txt_sha256
+            // txtSHA256
             // 
-            this.txt_sha256.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sha256.ForeColor = System.Drawing.Color.Black;
-            this.txt_sha256.Location = new System.Drawing.Point(101, 195);
-            this.txt_sha256.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_sha256.Name = "txt_sha256";
-            this.txt_sha256.Size = new System.Drawing.Size(398, 26);
-            this.txt_sha256.TabIndex = 37;
+            this.txtSHA256.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSHA256.ForeColor = System.Drawing.Color.Black;
+            this.txtSHA256.Location = new System.Drawing.Point(101, 195);
+            this.txtSHA256.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSHA256.Name = "txtSHA256";
+            this.txtSHA256.Size = new System.Drawing.Size(398, 26);
+            this.txtSHA256.TabIndex = 37;
             // 
-            // txt_md5
+            // txtMD5
             // 
-            this.txt_md5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_md5.ForeColor = System.Drawing.Color.Black;
-            this.txt_md5.Location = new System.Drawing.Point(101, 117);
-            this.txt_md5.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_md5.Name = "txt_md5";
-            this.txt_md5.Size = new System.Drawing.Size(398, 26);
-            this.txt_md5.TabIndex = 36;
+            this.txtMD5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMD5.ForeColor = System.Drawing.Color.Black;
+            this.txtMD5.Location = new System.Drawing.Point(101, 117);
+            this.txtMD5.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMD5.Name = "txtMD5";
+            this.txtMD5.Size = new System.Drawing.Size(398, 26);
+            this.txtMD5.TabIndex = 36;
             // 
             // label12
             // 
@@ -121,41 +121,41 @@
             this.label10.TabIndex = 32;
             this.label10.Text = "MD5";
             // 
-            // btn_checksum
+            // btCheckSum
             // 
-            this.btn_checksum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_checksum.ForeColor = System.Drawing.Color.Black;
-            this.btn_checksum.Location = new System.Drawing.Point(217, 81);
-            this.btn_checksum.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_checksum.Name = "btn_checksum";
-            this.btn_checksum.Size = new System.Drawing.Size(100, 28);
-            this.btn_checksum.TabIndex = 31;
-            this.btn_checksum.Text = "Check";
-            this.btn_checksum.UseVisualStyleBackColor = true;
-            this.btn_checksum.Click += new System.EventHandler(this.btn_checksum_Click);
+            this.btCheckSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCheckSum.ForeColor = System.Drawing.Color.Black;
+            this.btCheckSum.Location = new System.Drawing.Point(217, 81);
+            this.btCheckSum.Margin = new System.Windows.Forms.Padding(4);
+            this.btCheckSum.Name = "btCheckSum";
+            this.btCheckSum.Size = new System.Drawing.Size(100, 28);
+            this.btCheckSum.TabIndex = 31;
+            this.btCheckSum.Text = "Check";
+            this.btCheckSum.UseVisualStyleBackColor = true;
+            this.btCheckSum.Click += new System.EventHandler(this.btCheckSum_Click);
             // 
-            // txt_input
+            // txtInput
             // 
-            this.txt_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_input.ForeColor = System.Drawing.Color.Black;
-            this.txt_input.Location = new System.Drawing.Point(101, 48);
-            this.txt_input.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_input.Name = "txt_input";
-            this.txt_input.Size = new System.Drawing.Size(290, 26);
-            this.txt_input.TabIndex = 30;
+            this.txtInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInput.ForeColor = System.Drawing.Color.Black;
+            this.txtInput.Location = new System.Drawing.Point(101, 48);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(290, 26);
+            this.txtInput.TabIndex = 30;
             // 
-            // btn_chonfile
+            // btOpenFile
             // 
-            this.btn_chonfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_chonfile.ForeColor = System.Drawing.Color.Black;
-            this.btn_chonfile.Location = new System.Drawing.Point(399, 48);
-            this.btn_chonfile.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_chonfile.Name = "btn_chonfile";
-            this.btn_chonfile.Size = new System.Drawing.Size(100, 30);
-            this.btn_chonfile.TabIndex = 29;
-            this.btn_chonfile.Text = "Open";
-            this.btn_chonfile.UseVisualStyleBackColor = true;
-            this.btn_chonfile.Click += new System.EventHandler(this.btn_chonfile_Click);
+            this.btOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btOpenFile.ForeColor = System.Drawing.Color.Black;
+            this.btOpenFile.Location = new System.Drawing.Point(399, 48);
+            this.btOpenFile.Margin = new System.Windows.Forms.Padding(4);
+            this.btOpenFile.Name = "btOpenFile";
+            this.btOpenFile.Size = new System.Drawing.Size(100, 30);
+            this.btOpenFile.TabIndex = 29;
+            this.btOpenFile.Text = "Open";
+            this.btOpenFile.UseVisualStyleBackColor = true;
+            this.btOpenFile.Click += new System.EventHandler(this.btOpenFile_Click);
             // 
             // label9
             // 
@@ -181,39 +181,40 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "HASH Check";
             // 
-            // btnReset
+            // btReset
             // 
-            this.btnReset.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(193, 243);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(147, 42);
-            this.btnReset.TabIndex = 39;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
+            this.btReset.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btReset.Location = new System.Drawing.Point(193, 243);
+            this.btReset.Margin = new System.Windows.Forms.Padding(4);
+            this.btReset.Name = "btReset";
+            this.btReset.Size = new System.Drawing.Size(147, 42);
+            this.btReset.TabIndex = 39;
+            this.btReset.Text = "Reset";
+            this.btReset.UseVisualStyleBackColor = true;
+            this.btReset.Click += new System.EventHandler(this.btReset_Click);
             // 
             // HashCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 298);
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.txt_sha1);
-            this.Controls.Add(this.txt_sha256);
-            this.Controls.Add(this.txt_md5);
+            this.Controls.Add(this.btReset);
+            this.Controls.Add(this.txtSHA1);
+            this.Controls.Add(this.txtSHA256);
+            this.Controls.Add(this.txtMD5);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lable12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.btn_checksum);
-            this.Controls.Add(this.txt_input);
-            this.Controls.Add(this.btn_chonfile);
+            this.Controls.Add(this.btCheckSum);
+            this.Controls.Add(this.txtInput);
+            this.Controls.Add(this.btOpenFile);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HashCheck";
             this.Text = "HASH Check";
-            this.Load += new System.EventHandler(this.KiemTraFile_Load);
+            this.Load += new System.EventHandler(this.HashCheck_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,18 +222,18 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txt_sha1;
-        private System.Windows.Forms.TextBox txt_sha256;
-        private System.Windows.Forms.TextBox txt_md5;
+        private System.Windows.Forms.TextBox txtSHA1;
+        private System.Windows.Forms.TextBox txtSHA256;
+        private System.Windows.Forms.TextBox txtMD5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lable12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btn_checksum;
-        private System.Windows.Forms.TextBox txt_input;
-        private System.Windows.Forms.Button btn_chonfile;
+        private System.Windows.Forms.Button btCheckSum;
+        private System.Windows.Forms.TextBox txtInput;
+        private System.Windows.Forms.Button btOpenFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btReset;
     }
 }
